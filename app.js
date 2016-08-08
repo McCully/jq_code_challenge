@@ -1,17 +1,18 @@
 $(document).ready(function() {
   $("body").append("<div class = 'buttons' id = 'addSpy'></div>");
   $("#addSpy").append("<button>Add Spy</button>");
-  $(".buttons").append("<button id = 'change'>Change</button>");
-  $(".buttons").append("<button id = 'delete'>Delete</button>");
-  var spies = [];
-  var id = 1;
+  var id = 0;
   $("#addSpy").on("click" , function(){
-    $('body').append("<div id = 'spyguy'></div" + spies.push(randomNumber(0 , 100)));
+    id++;
+    $('#container').append('<div id="' + id + '">' + id + '<span><button class="change">Change</button><button class="delete">Delete Spy</button></span></div>');
+  $('#' + id).css('background-color', 'yellow');
   });
-  // $("#change").on("click" , function(){
 
-function randomNumber(min, max){
-  return Math.floor(Math.random() * (1 + max - min) + min);
-}
-console.log(spies);
+  $("#container").on("click", ".change" , function() {
+    $('#' + id).css('background-color' , 'red');
+  });
+
+  $("#container").on("click" , ".delete", function() {
+    $(this).parent().remove();
+  });
 });
